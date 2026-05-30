@@ -32,29 +32,57 @@ Traditional "Style Ranks" are rebranded into real-time corporate operational eff
 *   **SS-SSS Rank [The Reaper Margin]:** Screen shifts to an amber night-vision tactical overlay. Audio cuts low frequencies for a heavy sub-bass heart-rate pulse. The corporate AI grants an operational subsidy, freezing all property damage ledger penalties for 30 seconds.
 
 ## 📈 5. MASTER ECONOMY BALANCING & THE "TAUNT" FORMULA
-```python
-STARTING_BALANCE         = 4502001.05
-WALL_BREAK_PENALTY       = 2500.00
-GLASS_SHATTER_PENALTY    = 150.00
-ELITE_BOUNTY_DROP        = -50000.00 
 
-ZEN_BASE_MARKUP          = 1.25  
-ZEN_IMPATIENCE_MARKUP    = 1.35  
+### Financial Ledger Rules
+- **Cash-In-Hand:** Sourced from enemy drops/bounties. Used exclusively at the shop for immediate weapon and equipment upgrades. It is never directly drained by performance penalties during a level.
+- **Global Lifetime Debt:** A persistent, overarching negative balance. Accrued level penalties are calculated and added to this total only during the End-of-Level Financial Audit.
 
+### Economy Variables & Math Constants
+STARTING_DEBT = 4502001.05
+WALL_BREAK_PENALTY = 2500.00
+GLASS_SHATTER_PENALTY = 150.00
+LIQUIDITY_CRISIS_INTEREST_TICK = 10.00  # Added per second spent in D-B rank
+ELITE_BOUNTY_DROP = 50000.00            # Added straight to Cash-In-Hand
+
+ZEN_BASE_MARKUP = 1.25
+ZEN_IMPATIENCE_MARKUP = 1.35
+
+### The End-of-Level Financial Audit Engine
+def Calculate_Level_End_Audit(level_performance):
+    """
+    Calculates operational penalties gathered during the level 
+    and applies them to the persistent global debt ledger.
+    """
+    # 1. Structural Damage Computations
+    property_damage = (level_performance.walls_broken * WALL_BREAK_PENALTY) + \
+                      (level_performance.glass_shattered * GLASS_SHATTER_PENALTY)
+    
+    # 2. Performance Interest Penalties (Time spent in D-B Ranks)
+    interest_penalty = level_performance.seconds_in_liquidity_crisis * LIQUIDITY_CRISIS_INTEREST_TICK
+    
+    # 3. Post to Persistent Corporate Ledger
+    level_debt_accrued = property_damage + interest_penalty
+    global_lifetime_debt += level_debt_accrued
+    
+    # 4. Trigger Settlement Matrix User Interface
+    # Player chooses how much Cash-In-Hand to pay toward debt vs. hoarding for upgrades
+    Open_Debt_Settlement_Screen(cash_in_hand, global_lifetime_debt)
+
+### The Active Combat Taunt Execution
 def Process_Taunt_Input(player_state, style_points):
     if player_state.is_shopping:
         # The Impatience Cutoff
         trigger_animation("Weapon_Cock")
         audio_mixer.stop_voice_line()
-        style_decay_rate = 0.0 # Freeze style meter decay
+        style_decay_rate = 0.0          # Freeze style meter decay
         global_shop_markup = ZEN_IMPATIENCE_MARKUP
         open_shop_menu_instantly()
     else:
         # Standard Combat Taunt
         trigger_animation("Middle_Finger_To_Anomaly")
-        style_points += 150 # Gives active style burst
-        enemy_aggro_radius *= 1.5 # Enemies become faster and hit harder
-```
+        style_points += 150             # Gives active style burst
+        enemy_aggro_radius *= 1.5       # Enemies become faster and hit harder
+
 
 ## 👾 6. TARGET ENEMY & BOSS ROSTER
 1.  **The Liquidator (Swarmer):** Extreme vulnerability to Slag + Fire combos. Runs at the player in groups of 8.
