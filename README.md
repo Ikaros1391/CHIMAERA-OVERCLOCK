@@ -1,3 +1,23 @@
+Problem Statement (lead with this):
+"Scalable control scheme abstraction for character action games. Most franchises reinvent their input mapping every iteration, forcing players to relearn fundamentals. This framework locks intent-based controls while supporting radical mechanical variation across characters."
+
+Core Concept:
+Five input slots define intent, not action. Circle is repositioning (dodge, dash, teleport—whatever). R2 is primary attack. L2 is secondary/extend. Triangle is melee. Square is utility. Same inputs, infinite implementations.
+
+Proof of Concept: character schema to be added soon
+
+Corey: Balanced modular weapon swaps
+Debt Collector: Multi-tool telegraphing (same intents, different swords)
+Sage: Heavy, committed, reading-based
+Glitch: High mobility, crowd correction
+Zen: Area control, status effects, deception
+Why It Matters:
+"This solves the scalability problem that franchises like Devil May Cry face. You can support infinite characters without bloating controls or forcing players to relearn every iteration."
+
+
+
+
+
 # 📑 MASTER GAME DESIGN DOCUMENT: PROJECT REDGRAVE
 
 ### Project Title: TRIGGER HAPPY: THE LEDGER
