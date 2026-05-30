@@ -49,6 +49,36 @@ To optimize production scopes and eliminate heavy 3D asset switching overhead, C
 - **L3 + R3:** Activate Reaper Mode Overclock.
 
 ---
+from enum import Enum, auto
+from dataclasses import dataclass, field
+from typing import Dict, List, Tuple
+
+class Element(Enum):
+    KINETIC = auto()
+    SLAG = auto()
+    CRYO = auto()
+    VOLT = auto()
+
+@dataclass
+class PlayerState:
+    position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    health: float = 100.0
+    active_element: Element = Element.KINETIC
+    current_charge_tier: int = 0
+    is_charging: bool = False
+    is_shopping: bool = False
+    status_effects: List[str] = field(default_factory=list)
+    metadata: Dict[str, any] = field(default_factory=dict)
+
+class IIntentController:
+    """ Enforces intent-mapping logic across all franchise characters """
+    def press_r2(self, state: PlayerState) -> str: raise NotImplementedError
+    def press_l2(self, state: PlayerState) -> str: raise NotImplementedError
+    def press_triangle(self, state: PlayerState) -> str: raise NotImplementedError
+    def press_square(self, state: PlayerState) -> str: raise NotImplementedError
+    def press_circle(self, state: PlayerState) -> str: raise NotImplementedError
+
+
 
 class DebtCollectorController(IIntentController):
     """ Debt Collector: 5-Sword layout explicitly telegraphing intents.
@@ -201,6 +231,23 @@ class ZenController(IIntentController):
     def press_circle(self, state: PlayerState) -> str:
         """ Intent Slot 5: Contextual Repositioning Suite """
         return "Zen dissolves into Mist Drift, gaining 1.5 seconds of free 3D omni-directional aerial flight."
+
+        if __name__ == "__main__":
+    print("--- RUNNING INTENT SYSTEM DEMO ---")
+    session_state = PlayerState(position=(10.0, 0.0, -5.5), active_element=Element.CRYO)
+    
+    roster = {
+        "Debt Collector": DebtCollectorController(),
+        "Sage": SageController(),
+        "Glitch": GlitchController(),
+        "Zen": ZenController()
+    }
+    
+    for name, controller in roster.items():
+        print(f"\n[{name} Inputs]")
+        print(f"  R2 -> {controller.press_r2(session_state)}")
+        print(f"  Square -> {controller.press_square(session_state)}")
+
 
 
 ## 🧪 3. THE HAZMAT MATRIX & GRENADE COMBOS
