@@ -50,6 +50,159 @@ To optimize production scopes and eliminate heavy 3D asset switching overhead, C
 
 ---
 
+class DebtCollectorController(IIntentController):
+    """ Debt Collector: 5-Sword layout explicitly telegraphing intents.
+    Designed symmetrically to duel Corey by utilizing independent blades 
+    locked to individual input nodes to legally protect switching mechanics.
+    """
+    
+    def press_r2(self, state: PlayerState) -> str:
+        """ Intent Slot 1: Primary Offense """
+        return "Debt Collector draws The Executioner's Odachi for massive horizontal kinetic foot-slogging slashes."
+
+    def press_l2(self, state: PlayerState) -> str:
+        """ Intent Slot 2: Secondary / Extend Modifier """
+        return "Debt Collector draws Monomolecular Dual Daggers, enabling bullet-deflecting forward sprints."
+
+    def press_triangle(self, state: PlayerState) -> str:
+        """ Intent Slot 3: Heavy Weapon / Commitment Action """
+        return "Debt Collector draws Buster Cleaver for an unblockable, rocket-boosted overhead plunge strike."
+
+    def press_square(self, state: PlayerState) -> str:
+        """ Intent Slot 4: Utility / Hazmat CC Payload """
+        element_effects = {
+            Element.KINETIC: "Whip-Blade sweeping 180-degree arc, tripping all ground targets.",
+            Element.SLAG: "Lays circular ring of oil around self, multiplying movement speed by 2.0x.",
+            Element.CRYO: "Latches onto target, forcing an instant flash-freeze status constraint.",
+            Element.VOLT: "Drives whip into floor, shocking a 5m radius to completely knock players out of hover states."
+        }
+        return f"Debt Collector throws Coiled Whip-Blade: {element_effects[state.active_element]}"
+
+    def press_circle(self, state: PlayerState) -> str:
+        """ Intent Slot 5: Contextual Repositioning Suite """
+        return "Debt Collector draws Curved Scimitar for an evasive, invincibility-frame lateral Ghost Step."
+
+---
+
+class SageController(IIntentController):
+    """ Sage: Slow, committed brawler mechanics inspired by Greatsword workflows.
+    Translates heavy raw power, charge states, and animation cancels into 
+    destructive close-range demolition gauntlet strikes.
+    """
+    
+    def press_r2(self, state: PlayerState) -> str:
+        """ Intent Slot 1: Primary Offense """
+        if not state.is_charging:
+            state.is_charging = True
+            state.current_charge_tier = 1
+            return "Sage begins charging True Charge Strike. Tier 1 Active (Hyper-Armor engaged)."
+        state.current_charge_tier = min(state.current_charge_tier + 1, 3)
+        return f"Sage continues charging True Charge Strike. Upgraded to Tier {state.current_charge_tier}."
+
+    def press_l2(self, state: PlayerState) -> str:
+        """ Intent Slot 2: Secondary / Extend Modifier """
+        if state.is_charging:
+            state.is_charging = False
+            bonus = state.current_charge_tier * 15
+            return f"Sage cancels True Charge into forward Kinetic Tackle! Absorbs knockback. Next strike deals +{bonus}% damage."
+        return "Sage enters Iron Fortress Stance to absorb incoming kinetic impacts."
+
+    def press_triangle(self, state: PlayerState) -> str:
+        """ Intent Slot 3: Heavy Weapon / Commitment Action """
+        return "Sage plants feet for 360 Rupture Cleave or enters fast Apex Sheathe Stance."
+
+    def press_square(self, state: PlayerState) -> str:
+        """ Intent Slot 4: Utility / Hazmat CC Payload """
+        element_effects = {
+            Element.KINETIC: "Tectonic Gravity Well pulling scattered enemies inward.",
+            Element.SLAG: "Erupts sticky Slag mud pool, scrambling enemy attack tracking vectors.",
+            Element.CRYO: "Flash-freezes ground, forcing enemies onto their backs into hard physics anchors.",
+            Element.VOLT: "Turns ground piston into a Tesla Rod, auto-stunning melee attackers on tackle."
+        }
+        return f"Sage punches earth with Tectonic Anchor: {element_effects[state.active_element]}"
+
+    def press_circle(self, state: PlayerState) -> str:
+        """ Intent Slot 5: Contextual Repositioning Suite """
+        return "Sage executes a short directional Pivot Slide to re-orient heavy attack posture."
+
+----
+
+class GlitchController(IIntentController):
+    """ Glitch: Stimulant-fueled high-velocity crowd aggregator.
+    Specializes in packing trash mobs tightly together before dropping 
+    aoe payloads and flashing into their physical blind spots.
+    """
+    
+    def press_r2(self, state: PlayerState) -> str:
+        """ Intent Slot 1: Primary Offense """
+        return "Glitch unloads Static Discharge Daggers, stacking Data Corruption on targets."
+
+    def press_l2(self, state: PlayerState) -> str:
+        """ Intent Slot 2: Secondary / Extend Modifier """
+        return "Glitch fires Phase Overdrive beam, linking corrupted targets and snapping them into a single tight cluster."
+
+    def press_triangle(self, state: PlayerState) -> str:
+        """ Intent Slot 3: Heavy Weapon / Commitment Action """
+        if "anchor_active" in state.metadata:
+            state.position = state.metadata.pop("anchor_position")
+            state.health = state.metadata.pop("anchor_health")
+            return f"Rewind Buffer activated! Glitch teleports backward out of danger to position {state.position}."
+        state.metadata["anchor_active"] = True
+        state.metadata["anchor_position"] = state.position
+        state.metadata["anchor_health"] = state.health
+        return "Glitch drops a digital Rewind Buffer hologram, snapshotting position and health vectors."
+
+    def press_square(self, state: PlayerState) -> str:
+        """ Intent Slot 4: Utility / Hazmat CC Payload """
+        element_effects = {
+            Element.KINETIC: "Implosion crushes the tightly grouped enemies inward for severe structural break damage.",
+            Element.SLAG: "Blasts oil mist over cluster. Passing bullets instantly trigger a massive firestorm zone.",
+            Element.CRYO: "Flash-freezes clustered group into a giant physics anchor for grapple slingshots.",
+            Element.VOLT: "Fires high-frequency voltage loop, arcing exponentially across the compact pile to delete shields."
+        }
+        return f"Glitch deploys System Purge Canister into crowd: {element_effects[state.active_element]}"
+
+    def press_circle(self, state: PlayerState) -> str:
+        """ Intent Slot 5: Contextual Repositioning Suite """
+        return "Glitch performs a zero-frame Quantum Blink directly into the enemy cluster's blind spot."
+
+------
+
+class ZenController(IIntentController):
+    """ Zen: Shady alchemical merchant manipulating geological terrain fields.
+    Thrives on proxy-combat via mirror projections, projectile redirection, 
+    and mutating the arena floor into high-impact elemental status hazards.
+    """
+    
+    def press_r2(self, state: PlayerState) -> str:
+        """ Intent Slot 1: Primary Offense """
+        return "Zen flicks sleeves, firing homing Oracular Needles that viral-spread active status effects."
+
+    def press_l2(self, state: PlayerState) -> str:
+        """ Intent Slot 2: Secondary / Extend Modifier """
+        return "Zen triggers Projection Swap, shifting perspective and body locations with a solid-light mirror clone."
+
+    def press_triangle(self, state: PlayerState) -> str:
+        """ Intent Slot 3: Heavy Weapon / Commitment Action """
+        if state.is_shopping:
+            return "THE IMPATIENCE CUTOFF! Zen cocks sleeve mechanisms, freezing style decay and enforcing a 1.35x shop markup."
+        return "Zen deploys Mirror Ward crystalline wall, reflecting incoming projectiles with double travel velocity."
+
+    def press_square(self, state: PlayerState) -> str:
+        """ Intent Slot 4: Utility / Hazmat CC Payload """
+        element_effects = {
+            Element.KINETIC: "Mutates arena floor into calcite spikes, micro-staggering and disrupting enemy paths.",
+            Element.SLAG: "Spreads an 8-meter oil pool, preparing a permanent 40 DPS napalm trap zone.",
+            Element.CRYO: "Converts entire zone into an ice rink, causing targets to slide uncontrollably.",
+            Element.VOLT: "Electrifies the ground surface for 25 lightning DPS, stripping corporate energy shields."
+        }
+        return f"Zen hurls alchemical transmutation flask: {element_effects[state.active_element]}"
+
+    def press_circle(self, state: PlayerState) -> str:
+        """ Intent Slot 5: Contextual Repositioning Suite """
+        return "Zen dissolves into Mist Drift, gaining 1.5 seconds of free 3D omni-directional aerial flight."
+
+
 ## 🧪 3. THE HAZMAT MATRIX & GRENADE COMBOS
 
 Corey's Chimaera Frame always outputs standard Kinetic ballistic damage by default, while the D-Pad sets the elemental chamber of her Square Grenade Bumper.
