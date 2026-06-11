@@ -1,80 +1,130 @@
-## README.md — THE REAPER MARGIN (PROJECT REDGRAVE)
-PROOF OF CONCEPT • PUBLIC DOMAIN SANDBOX
-## 📌 OVERVIEW & DESIGN INTENT
-THE REAPER MARGIN (Workshop Title: Project Redgrave) is an open-source, high-velocity character action mechanics framework. It is built specifically as a design template and code proof-of-concept (PoC) for independent developers. The goal is to provide a clean, modular structural blueprint that can be ported directly into engines like Unreal Engine, Unity, or Godot.
-The game mechanics fuse aggressive, momentum-driven character combat with a corporate liquidation theme. Performance determines not just your score, but your real-time animation data, weapon speed, and character personality.
-------------------------------
-## 🎮 CORE MECHANICS## 1. The Kinetic Camera Blueprint
-To facilitate unbroken combat momentum, the camera decouples from the player's shoulder and utilizes a wide-angle Dynamic Spring-Arm System:
 
-* Standard State: Arm Length: 4.5m | FOV: 85°. Balanced spatial awareness.
-* Momentum State (Slide/Grapple): Arm interpolates to 6.5m | FOV: 105°. High-velocity widescreen distortion.
-* Vertical State (Bayonet Vault): Camera lags behind vertical Z-axis climb and tilts down 25°, keeping the arena floor fully visible.
+# **THE REAPER MARGIN**
+**PROOF OF CONCEPT • PUBLIC DOMAIN SANDBOX**
 
-## 2. Real-Time Execution Scaling (Personality & Frame Data)
-Corey’s mechanical behavior, recovery windows, and audio profile scale dynamically across execution tiers:
+---
 
-* D–B Tiers [Liquidity Crisis]: High emotional friction. Corey is aggressive, frustrated, and uses vulgar or sarcastic taunts. Weapons feel heavy with high recovery frame counts.
-* A–S Tiers [Compliant Operation]: Balanced corporate compliance. Corey uses disciplined military callouts. Movement and frame data are standardized.
-* SS–SSS Tiers [The Black Margin]: Transition to the ex-military "Reaper" mindset. Corey goes completely quiet, letting her weapons do the talking. Animations become ultra-efficient, minimalist, and feature heavily shortened recovery windows.
-* Ultimate State [Reaper Mode Overclock]: An amber night-vision tactical overlay engages and audio drops into low-frequency sub-bass pulses. Corey is dead silent. Cybernetics completely eliminate weapon transformation animation frames, enabling instant zero-frame configuration snaps.
+## 🎮 CORE MECHANICS
 
-------------------------------
-## 🔄 THE CHIMAERA FRAME & HAZMAT MATRIX
-To eliminate 3D asset-switching overhead, the player wields the Chimaera Frame—a single modular tool that pneumatically telescopes and reconfigures mid-combo. Elemental payloads can be re-routed on the fly:
+### The Kinetic Camera Blueprint
 
-* R2 / RT: Gun-Fu Form. Fires current weapon form (Pistols, Shotgun, Rifle, or Overclock AR).
-* L2 / LT (Tap): Toggle configuration between Dual Pistols & Shotgun.
-* L2 / LT (Hold ≥0.35s): Extend barrel into Anti-Material Sniper Form.
-* Triangle / Y (Tap): Quick Bayonet Parry.
-* Triangle / Y (Hold): Rear Rocket Booster Impact Smash.
-* Triangle / Y (Mid-Air): Engage Hover Boots.
-* Square / X: Grenade Bumper. Launch Cooldown-Based Elemental Canisters through injection lines.
-* Circle / B (Ground): High-Velocity Slide.
-* Circle / B (Air / Lock-On): Grapple Zip Cable.
-* D-Pad: Element Cycle. Shift active internal core payload between Slag, Pyro, Cryo, and Volt.
-* L3 + R3: Reaper Mode Overclock. Activate ultimate state when gauge hits 100%.
+No manual camera control—this game moves *with* you. The camera decouples from your shoulder and uses a dynamic wide-angle system that breathes with your momentum:
 
-## 🧪 Hazmat Interaction Combinations
+- **Standard State**: 4.5m arm length, 85° FOV. Clean sightlines for normal combat.
+- **Momentum State** (slides, grapples): Pulls back to 6.5m at 105° FOV. You get that widescreen rush.
+- **Vertical State** (climbing with bayonet): Camera lags behind and tilts down 25° to keep the ground visible—no disorienting verticality.
 
-* Slag Fluid: Deploys a chemical oil slick. Corey's slide length and velocity are multiplied by 2.0x across it.
-* Pyro Fluid: Blasting Pyro hitscan rounds or canisters into a Slag pool detonates it into a continuous thermal loop trap zone.
-* Cryo Coolant: Flash-freezes targets. Freezing an airborne target turns them into a stationary physics anchor you can Grapple Zip off of to slingshot across gaps.
-* Ionized Volt: Strips corporate energy shields. Firing it into a Slag pool electrifies the floor surface, allowing Corey to safely hover above using her Hover Boots.
+---
 
-------------------------------
-## 👥 CHARACTER ROSTER SPREAD
+### Real-Time Execution Scaling (Personality & Frame Data)
 
-Cordelia "Corey" Cross is the primary player character. Others are implemented as proof of scalability.
+Corey's entire presence—how she moves, how fast she recovers, how she sounds—shifts based on your operational efficiency:
 
-* Corey (The Reaper): High-speed, frame-canceling multi-form specialist utilizing the shifting Chimaera Frame.
-* Debt Collector: Elite Stalker utilizing an Odachi, Dual Daggers, and a Coiled Whip-Blade for high-stagger tracking counters.
-* Sage: Heavy hydraulic archetype using hyper-armor charge stances. Features a perfect "Hydraulic Re-route" manual parry/cancel loop.
-* Glitch: Zero-frame timeline trickster that drops digital Rewind Buffer hologram anchors to snap back to previous spatial coordinates and health values.
-* Zen: Tactical mirror-cloner and alchemist. Can freeze style decay during active shop browsing at the cost of a temporary corporate markup liability.
+- **D–B Tiers [Liquidity Crisis]**: Corey is pissed. Aggressive, vulgar, frustrated. Weapons feel heavy and move slow. High recovery frames. You're barely keeping your head above water.
+- **A–S Tiers [Compliant Operation]**: Professional and balanced. Military discipline. Standard timing, mid-range speed. You're running clean operations.
+- **SS–SSS Tiers [The Black Margin]**: Corey goes silent. The ex-military Reaper persona takes over. Animations strip down to pure efficiency. Recovery windows shrink hard.
+- **Ultimate State [Reaper Mode Overclock]**: Amber night-vision overlay. Sub-bass audio pulses. Zero-frame weapon transforms. Corey is ice cold and lethal.
 
-------------------------------
-## 📉 THE PERFORMANCE AUDIT & LEDGER ENGINE
-Traditional style ranks are rebranded into real-time corporate operational efficiency tracking, evaluated through the MasterPerformanceAuditEngine.
+---
 
-* Rank SSS: 5000+ points | Decay rate 60.0/s | 6.0x Gauge multiplier | The Black Margin (Silent / Cold)
-* Rank SS: 3500 points | Decay rate 45.0/s | 4.5x Gauge multiplier | The Black Margin (Silent / Cold)
-* Rank S: 2000 points | Decay rate 30.0/s | 3.0x Gauge multiplier | Compliant Operation (Professional)
-* Rank A: 1000 points | Decay rate 20.0/s | 2.0x Gauge multiplier | Compliant Operation (Professional)
-* Rank B: 500 points | Decay rate 15.0/s | 1.5x Gauge multiplier | Liquidity Crisis (Frustrated / Vulgar)
-* Rank C: 150 points | Decay rate 10.0/s | 1.0x Gauge multiplier | Liquidity Crisis (Frustrated / Vulgar)
-* Rank D: 0 points | Decay rate 5.0/s | 0.5x Gauge multiplier | Liquidity Crisis (Frustrated / Vulgar)
+## 🔄 THE CHIMAERA FRAME & ELEMENTAL ARSENAL
 
-## ⏱️ Buzzer Beater Grace Period
-When the Reaper Gauge empties, a strict 1.5-second grace window triggers. Landing an attack during this frame window secures a "Buzzer Beater" modifier, freezing your style points. Failing the window causes your points to plummet at 5x the normal decay rate.
-## 📈 Master Economy Balancing Rules
-To protect player progression from being choked out by poor execution penalties, the engine strictly isolates immediate funding from structural liabilities:
+You've got one weapon: the **Chimaera Frame**. It's a modular, transforming gun that reconfigures mid-combo without animation overhead. Swap forms, cycle elemental payloads—all mid-fight.
 
-* Cash-In-Hand: Sourced from enemy drops. Spent at vending machines for immediate upgrades. It is never drained by mid-game performance penalties.
-* Global Lifetime Debt: A persistent, overarching negative ledger balance. Structural damage (breaking glass/walls) and interest penalties accrued during a level are compiled and applied to this lifetime total only during the End-of-Level Financial Audit. High global debt values cause the aggressive Debt Collector Elite Stalker to spawn dynamically in future zones.
+### Controls
 
-------------------------------
-## 🔓 PUBLIC DOMAIN USE TERMS (CC0) [1] 
-This project is completely dedicated to the public domain under Creative Commons Zero (CC0).
-You are free to take this documentation, underlying mathematics, structural systems, and character configurations to use in standalone indie developments, conversion mods, or full commercial projects. No attribution required, no licensing strings attached. Build upon it, modify it, change it, and make it your own.
+- **R2 / RT**: Fire. Whatever form you're in (Pistols, Shotgun, Rifle, or Overclock AR).
+- **L2 / LT (Tap)**: Swap between Dual Pistols and Shotgun.
+- **L2 / LT (Hold ≥0.35s)**: Extend into Anti-Material Sniper Form.
+- **Triangle / Y (Tap)**: Quick Bayonet Parry.
+- **Triangle / Y (Hold)**: Rear Rocket Booster Impact Smash.
+- **Triangle / Y (Mid-Air)**: Engage Hover Boots.
+- **Square / X**: Grenade Bumper. Launch cooldown-based elemental canisters.
+- **Circle / B (Ground)**: High-Velocity Slide.
+- **Circle / B (Air / Lock-On)**: Grapple Zip Cable.
+- **Right Stick**: Element Cycle. Rotate through Slag, Pyro, Cryo, and Volt payloads.
+- **L3 + R3**: Reaper Mode Overclock. Activate when your gauge hits 100%.
 
+### Elemental Hazmat Interactions
+
+The real magic is in mixing your payload types:
+
+- **Slag Fluid**: Creates oil slicks. Your slide velocity doubles crossing them.
+- **Pyro Fluid**: Ignite Slag pools into thermal traps that pin enemies in place.
+- **Cryo Coolant**: Flash-freezes targets. Freeze an airborne enemy and they become a physics anchor—grapple off them to slingshot across gaps.
+- **Ionized Volt**: Strips corporate shields. Electrify Slag pools and hover above them safely with Hover Boots.
+
+---
+
+## 👥 THE CAST
+
+**Cordelia "Corey" Cross** (The Reaper) is the main character you play—a stubborn frame-canceling specialist who can't die, only negotiate. Others are implemented as proof of concept:
+
+- **Debt Collector**: Elite stalker. Mute, distorted mirror of Corey. Uses an Odachi, dual daggers, and a coiled whip-blade. High-stagger tracking counters. Hunts other enemies in the arena first, then challenges Corey to a 1-on-1 duel. His AI intelligence scales with your margins.
+- **Sage**: Heavy hydraulic archetype. Hyper-armor charge stances. Perfect parry loops that let him cancel and reroute. Tanky and methodical.
+- **Glitch**: Timeline trickster. Drops rewind hologram anchors that snap you back to previous coordinates and health values. Zero-frame repositioning.
+- **Zen**: Mirror-cloner and alchemist. Runs the van shop. Can freeze your margin decay during a shopping session for a temporary corporate markup cost.
+
+---
+
+## 📊 THE MARGINS SYSTEM
+
+Your operational efficiency is constantly tracked and decaying. This isn't a style rank—it's a real-time corporate ledger that determines how dangerous you are:
+
+| Rank | Points | Decay Rate | Gauge Multiplier | Persona |
+|------|--------|-----------|------------------|---------|
+| **SSS** | 5000+ | 60.0/s | 6.0x | The Black Margin (Silent) |
+| **SS** | 3500 | 45.0/s | 4.5x | The Black Margin (Silent) |
+| **S** | 2000 | 30.0/s | 3.0x | Compliant (Professional) |
+| **A** | 1000 | 20.0/s | 2.0x | Compliant (Professional) |
+| **B** | 500 | 15.0/s | 1.5x | Liquidity Crisis (Vulgar) |
+| **C** | 150 | 10.0/s | 1.0x | Liquidity Crisis (Vulgar) |
+| **D** | 0 | 5.0/s | 0.5x | Liquidity Crisis (Vulgar) |
+
+Higher margins = faster damage, quicker movement, more Gauge generation. Lower margins = you're struggling, and it *sounds* and *feels* different.
+
+---
+
+### The Buzzer Beater
+
+When your Reaper Gauge empties, you get a **1.5-second grace window**. Land an attack during it and your points freeze. Miss it? Your decay rate jumps to 5x normal. High-risk, high-reward clutch mechanic.
+
+---
+
+## 💀 DEATH IS NEGOTIATION
+
+You can't actually die. When you take fatal damage, the game stops and presents you with two choices:
+
+1. **Reload** your last save.
+2. **Continue** and accept a penalty marker.
+
+Here's the catch: that penalty marker tanks your **end-of-level debt relief**. You still get paid for enemies, but less cash means lower debt payoff. That leftover debt carries into the next zone, increasing the Debt Collector's spawn chance. The difficulty ramps because of economics, not because your damage dropped. You're mechanically the same—just deeper in the hole.
+
+---
+
+## 💰 THE ECONOMY
+
+Cash and debt are tracked separately:
+
+- **Cash-In-Hand**: Dropped by enemies. Spent at vending machines for stimpaks and armor. Never drained by performance penalties.
+- **Global Lifetime Debt**: Structural damage (breaking walls/glass) and interest pile up during a level. Compiled at the End-of-Level Financial Audit and added to your lifetime total. High debt = Debt Collector hunts you more aggressively in future zones.
+
+This means poor execution doesn't cripple your immediate damage output, but it *does* haunt your economy. You have to manage both your margins *and* your ledger.
+
+---
+
+### Debt Collector Hunt Dynamics
+
+The Debt Collector spawns randomly. Spawn chance scales with your global debt. When he shows up:
+
+- He hunts other enemies in the arena first.
+- He's looking for a 1-on-1 duel with Corey.
+- He can't be killed, but chasing him off rewards a large cash payout.
+- His AI difficulty scales with your current margins.
+- Enemies he kills don't pay you—only enemies *you* kill count toward your cash.
+
+---
+
+## 🔓 PUBLIC DOMAIN (CC0)
+
+This entire project—documentation, systems, math, character configs, everything—is **completely public domain** under Creative Commons Zero. No strings. No attribution required. Take it, mod it, commercialize it, remix it. Make it yours.
