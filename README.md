@@ -87,7 +87,7 @@ Higher margins = faster damage, quicker movement, more Gauge generation. Lower m
 
 ### The Buzzer Beater
 
-When your Reaper Gauge empties, you get a **1.5-second grace window**. Land an attack during it and your points freeze. Miss it? Your decay rate jumps to 5x normal. High-risk, high-reward clutch mechanic.
+When your Overclock Gauge empties, you get a **1.5-second grace window** before your margins start to decay. Land an attack during it and your points are saved.
 
 ---
 
