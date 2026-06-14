@@ -47,3 +47,18 @@ class PlayerState:
             "input_buffer": []
     }
     
+    def take_damage(self, damage_amount):
+        """Processes incoming damage from anomalies using disposable plate logic."""
+        # 🛡️ RULE 1: If she has armor plates left, a plate shatters instead of taking health damage
+        if self.armor_plates > 0:
+            self.armor_plates -= 1
+            print(f"ARMOR PLATE SHATTERED! Plates remaining: {self.armor_plates}")
+            return # Block the rest of the damage completely
+
+        # 💔 RULE 2: If armor is completely gone, the damage punches straight into her core health
+        self.current_health = max(0, self.current_health - damage_amount)
+        print(f"CORE HEALTH IMPACTED! Current Health: {self.current_health}")
+        
+        if self.current_health <= 0:
+            print("REAPER DOWN. DEBT RECOVERY OPERATION FAILED.")
+        
