@@ -1,6 +1,6 @@
 
 # **CHIMÆRA OVERCLOCK**
-**PROOF OF CONCEPT • PUBLIC DOMAIN SANDBOX**
+**PROOF OF CONCEPT**
 
 ---
 
@@ -125,6 +125,3 @@ The Debt Collector spawns randomly. Spawn chance scales with your global debt. W
 
 ---
 
-## 🔓 PUBLIC DOMAIN (CC0)
-
-This entire project—documentation, systems, math, character configs, everything—is **completely public domain** under Creative Commons Zero. No strings. No attribution required. Take it, mod it, commercialize it, remix it. Make it yours.
