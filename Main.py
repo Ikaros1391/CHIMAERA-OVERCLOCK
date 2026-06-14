@@ -46,16 +46,21 @@ class FinancialDatabase:
 
 class GameInstance:
     """Manages the level instantiation, active roster choice, and boss encounters."""
-    def __init__(self):
+        def __init__(self):
         self.finances = FinancialDatabase()
         self.ai_director = DebtCollectorAIScale()
+        
+        # Initialize the universal low-poly physics brain from Intent.py
+        from Intent import LowPolyPhysicsComponent
+        self.player_physics = LowPolyPhysicsComponent()
         
         # Initialize Reaper (Cordelia Cross) as the baseline player setup
         self.player_elements = CoreyElementSystem()
         self.player_intent = CoreyIntentMap(self.player_elements)
         
-        # Hook everything into the universal master loop brain
+        # Hook everything into the universal master loop brain (Physics is now active!)
         self.engine = EngineController(self.player_intent, self.player_elements, self.player_physics)
+)
 
     def initialize_combat_room(self, anomaly_count):
         """Bootstraps a fresh arena and runs the random stalker boss check."""
