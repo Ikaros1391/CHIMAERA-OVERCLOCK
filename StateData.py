@@ -10,22 +10,34 @@ class Element:
 class PlayerState:
     def __init__(self, character_name):
         self.character_name = character_name
-        self.margin_points = 0
-        self.margin_rank = "E"
-        self.combo_history = []
-        self.active_status = None
-        self.status_duration = 0.0
         
-        # Unique mechanics configurations for your 5 distinct showcase profiles
+        # Hypercapitalist Economy Tracking
+        self.debt_total = 1000000.0  # Project Redgrave initial price tag
+        self.cash_in_hand = 0.0
+        
+        # Defensive Attrition Layer
+        self.max_health = 50
+        self.current_health = 50
+        self.armor_plates = 3        # Absorbs full hits before health is touched
+        
+        # Advanced Overclock Engine ("Reaper Mode")
+        self.overclock_meter = 0.0    # Builds to 100.0 to activate
+        self.is_reaper_mode = False
+        self.reaper_timer = 0.0
+        self.active_element_infusion = None
+        
+        # Core Margin Metrics (Rank D to SSS)
+        self.margin_points = 0.0
+        self.margin_rank = "D"
+        self.margin_decay_timer = 0.0
+        self.stagnation_penalty_multiplier = 1.0  # Rises if you spam attacks
+        self.combo_history = []                    # Tracks recent actions to spot repetition
+        
+        # Shared Modular Configurations
         self.canisters = {"Slag": 0, "Pyro": 0, "Cryo": 0, "Volt": 0}
         self.cooldowns = {}
         
-        # Van Shopkeeper state overrides specifically for Zen
-        self.is_shopkeeper_active = (character_name == "Zen")
-        self.shop_inventory = ["Upgrade Component A", "Hardware Metric Booster"] if character_name == "Zen" else []
-
-        # All characters seamlessly pull from the exact same physics rule engine!
-        # Corey starts on the left side of the screen; bosses/NPCs spawn on the right
+        # All characters pull from the same movement vectors
         spawn_x = 100 if character_name == "Corey" else 900
         self.physics = PhysicsObject(x=spawn_x, y=0)
         
