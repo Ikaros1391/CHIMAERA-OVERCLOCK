@@ -50,6 +50,15 @@ class EngineController:
         self.overclock_timer = 0.0
         self.grenade_cooldown = 0.0
 
+            # 🕹️ Right Stick Flick Input Tracking (For Canister Swaps)
+        self.right_stick_horizontal_neutral = True
+        self.right_stick_vertical_neutral = True
+        self.flick_threshold = 0.8  # Registers a deliberate push past 80%
+
+        # ⚡ Dual Analog Stick Click Tracking (For L3 + R3 Overclock)
+        self.overclock_button_neutral = True
+        
+
     def run_frame_update(self, raw_inputs, delta_time):
         """Processes the entire game state every single frame at a crisp 60 FPS."""
         # 1. Update Cooldown Timers
@@ -110,5 +119,62 @@ class EngineController:
             else:
                 self.physics.engage_runic_or_jet_hover(self.state, delta_time)
 
+                                 # 🎮 READ HARDWARE STICK HARDWARE DATA
+        # (Assuming standard Pygame joystick index mapping for stick coordinates and clicks)
+        try:
+            joystick = pygame.joystick.Joystick(0)
+            axis_x = joystick.get_axis(2)  # Right Stick Horizontal
+            axis_y = joystick.get_axis(3)  # Right Stick Vertical
+            l3_click = joystick.get_button(9)  # Left Stick Click Button
+            r3_click = joystick.get_button(10) # Right Stick Click Button
+            
+            # Pass hardware updates down to your new stick rule filters
+            self.process_right_stick_flicks(axis_x, axis_y)
+            self.check_overclock_activation(l3_click, r3_click)
+        except pygame.error:
+            # If no physical controller is plugged in, default safe bypass
+            pass
+        
+
         # 8. Run Newtonian Physics Matrix Simulation
         self.physics.simulate_world_vectors(delta_time, self.state)
+
+    def process_right_stick_flicks(self, axis_x, axis_y):
+        """Monitors the right analog stick coordinates to trigger canister swaps."""
+        # HORIZONTAL AXIS FLICK (Left / Right)
+        if abs(axis_x) > self.flick_threshold:
+            if self.right_stick_horizontal_neutral:
+                self.player1.rotate_canister()
+                self.right_stick_horizontal_neutral = False  
+        else:
+            self.right_stick_horizontal_neutral = True  
+
+        # VERTICAL AXIS FLICK (Up / Down)
+        if abs(axis_y) > self.flick_threshold:
+            if self.right_stick_vertical_neutral:
+                self.player1.rotate_canister()
+                self.right_stick_vertical_neutral = False
+        else:
+            self.right_stick_vertical_neutral = True
+
+    def check_overclock_activation(self, left_stick_click, right_stick_click):
+        """Listens for L3 + R3 simultaneous analog clicks to pop Reaper Mode."""
+        if left_stick_click and right_stick_click:
+            if self.overclock_button_neutral:
+                self.overclock_button_neutral = False 
+                
+                # Check if Corey's Overclock meter is fully charged (saturated at 100)
+                if self.player1.overclock_meter >= 100.0 and not self.player1.is_reaper_mode:
+                    # ACTIVATE REAPER MODE OVERCLOCK
+                    self.player1.is_reaper_mode = True
+                    self.player1.reaper_timer = 600.0  # 10 full seconds at 60 frames per second
+                    
+                    # Weapon platform copies her active grenade element
+                    self.player1.active_element_infusion = self.player1.active_element
+                    
+                    # Drain the meter tank back to zero
+                    self.player1.overclock_meter = 0.0
+                    print("⚡ CHIMÆRA OVERCLOCK ACTIVE: ZERO STARTUP FRAMES ENGAGED.")
+        else:
+            self.overclock_button_neutral = True
+                                   
