@@ -2,6 +2,10 @@
 # CHIMAERA OVERCLOCK: MASTER ENGINE CONTROLLER (CORE PHYSICS & INTENT LOOP)
 # =============================================================================
 
+from StateData import PlayerState, Element
+from Intent import IntentProcessor
+
+
 class GameState:
     """A lightweight, zero-allocation container for the active battle data."""
     def __init__(self):
