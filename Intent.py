@@ -716,3 +716,64 @@ class ZenPhysicsAndStyleLoop:
         if zen_intent.is_overclocked:
             state.scramble_entire_hud_into_stock_ticker_and_gossip_text()
 
+            # =====================================================================
+# 📊 STACKABLE COMBAT MARGIN SYSTEM
+# =====================================================================
+class MarginRankEngine:
+    def __init__(self):
+        # Maps numeric points to standard style brackets
+        self.rank_thresholds = [
+            (1000, "SSS"),
+            (750, "SS"),
+            (500, "S"),
+            (350, "A"),
+            (200, "B"),
+            (100, "C"),
+            (0, "D")
+        ]
+
+    def update_frame_decay(self, player_state):
+        """Ticks 60 times a second to drop style points when out of combat."""
+        # REAPER MODE RULE: Freeze style decay completely during overclock
+        if player_state.is_reaper_mode:
+            return
+
+        # Check if Corey is still within her post-hit grace period window
+        if player_state.margin_decay_timer > 0:
+            player_state.margin_decay_timer -= 1.0
+            return
+
+        # Higher Tiers drop faster than lower ones
+        decay_speeds = {"SSS": 1.5, "SS": 1.2, "S": 1.0, "A": 0.8, "B": 0.5, "C": 0.3, "D": 0.0}
+        current_speed = decay_speeds.get(player_state.margin_rank, 0.0)
+
+        # Deduct score points and re-check her current letter rank
+        player_state.margin_points = max(0.0, player_state.margin_points - current_speed)
+        self.recalculate_rank(player_state)
+
+    def recalculate_rank(self, player_state):
+        """Updates the ranking letter based on raw score numbers."""
+        for score, rank_letter in self.rank_thresholds:
+            if player_state.margin_points >= score:
+                player_state.margin_rank = rank_letter
+                break
+
+    def get_firearm_startup_reduction(self, player_state):
+        """Eliminates weapon wind-up/aim animation frames during Reaper Mode."""
+        if player_state.is_reaper_mode:
+            return 999  
+        return 0
+
+    def get_ballistic_recovery_reduction(self, player_state):
+        """Reduces end-lag and gun recoil animation frames based on Style Tiers."""
+        # Apex Performance Tier
+        if player_state.margin_rank in ["S", "SS", "SSS"]:
+            return 8 if player_state.margin_rank == "SSS" else 6
+        # Flow State Tier
+        elif player_state.margin_rank in ["B", "A"]:
+            return 4 if player_state.margin_rank == "A" else 2
+        # Baseline Operational Tier
+        else:
+            return 0
+            
+
