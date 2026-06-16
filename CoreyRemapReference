@@ -1,37 +1,36 @@
+CHIMAERA-OVERCLOCK: Corey Remap Reference
 
-## COREY REMAP REFERENCE (REVISION v2.0)## [ THE THREE-ZONE ARCHITECTURE ]
-Philosophy: Split the pad into Left-Side Traversal/Momentum, Right-Side Pure Violence, and a Digital Vertical Axis for non-combat admin. No input bloat. No hard lock-on required.
-------------------------------
-## LEFT SIDE: TRAVERSAL & MOMENTUM (VECTOR MANAGEMENT)
+Philosophy: Split the pad into Left-Side Traversal/Momentum, Right-Side Pure Violence, with automated wide-angle perspective camera vectors.
 
-* L1 (Hold): Dedicated Sprint / Kinetic Accelerator. Keeps thumb completely free to steer vectors on the Left Stick.
-* Left Stick: 360-Degree Directional Movement.
-* Circle (Ground Context): Manual Slag Slide / Launchpad Clutch. Tapping Circle while touching a Slag patch pops the kinetic clutch, storing and converting vertical falling speed into horizontal launch velocity.
-* Circle (Air Context): Traversal Grapnel Swing. Fires an anchor line dead-ahead along the camera reticle vector. No enemy targeting logic, no target-switching friction.
+Layout Configuration
+Primary Digital Actions
+R2: Primary Fire (Continuous projectile hammering).
+R1: React/Deflect (Parry/Block last-resort defense mechanism).
+L2: Asset Morph (Tap: Handguns $\leftrightarrow$ Shotgun / Hold: Manual AMR Sniper).
+L1: Kinetic Sprint Accelerator (Single-tap 3s burst).
+Directional Triggers & Anchors
+Left Stick: 360-degree vector steering.
+Context Focus (Ground Hold L2): Transitions to manual sniper scope aiming reticle.
+Context Focus (Air Hold L2): Initiates dead-eye time dilation until landing.
+Right Stick: Pure 4-Way Hazmat Select (North, South, East, West cardinal elements).
+Behavior: Fixed toggle selection state. Permanent until explicitly changed.
+Face Button Core System
+Circle (Air/Ground Context): Traversal Grapnel Swing. Single tap latches onto geometry anchor points.
+Cross: 3-Sec Aerial Hover Jets.
+Momentum Interrupt: Tapping Cross while swinging instantly breaks the Grapnel line to snap and preserve peak engine velocity.
+Triangle: Contextual Heavy Payload Rocket.
+Moving Stick: Ranged high-impact AoE explosive projectile.
+Melee Distance: Automated Rocket Vault execution over an anomaly's face.
+Neutral Stick: Straight vertical Halo 2 style kinetic self-launch rocket jump.
+Square: Hazmat Grenade Deployment. Combo tool dropped to prime zones for cascading chemical reactions.
+D-Pad Utility Matrix
+D-Pad UP: Fast Heal / Lifeline (Short linear path matching life-bar elevation psychology).
+Horizontal Axis (Left/Right): VACANT (Stripped to completely prevent panicked diagonal misclicks during high-stress encounters).
+D-Pad DOWN: Contextual Action (Set-piece interactions only. Removed from active combat execution pools).
+Overclock Mechanism
 
-## RIGHT SIDE: COMBAT & CHIMAERA VIOLENCE
+L3 + R3 Click: Reaper Mode. Simultaneous dual-handed stick compression.
+Properties: Lasts exactly 10 seconds. Zero startup frames.
+Visual/Mechanical Shift: Literal high-tech visor snaps shut. Arena desaturates into monochromatic tones while weak points and elements explode in high-contrast color. 100% of projectile damage converts to pure elemental Hazmat damage based on the active Right Stick position.
 
-* R2: Fire Active Gun Weapon Mode.
-* Triangle: Contextual Heavy Payload (Distance = Rocket Launcher / Melee = Vault). Melee distance instantly triggers the Vault—drives the rig blade into the anomaly, pole-vaults over its head, and dumps the rocket payload downward to blast Corey into sky-high orbit.
-* Square: Hazmat Grenade Deployment (Element determined by Right Stick flick quadrant).
-* Cross: Jump / Aerial Hover Jets.
-* L2: Asset Morph (Tap) / Sniper Bullet-Time (Hold).
 
-------------------------------
-## DIGITAL AXIS: JOB ADMINISTRATION (UP = LIFE / DOWN = DEATH) [1] 
-Horizontal axis (Left/Right) is completely VACANT. Infinite ammo removes the reload command. Axis is stripped down to prevent panicked diagonal misclicks during high-stress encounters.
-
-* D-Pad UP: Healing Stim (The Panic Save)
-* Ergonomics: Fastest, shortest linear path for the left thumb escaping upward from the stick.
-   * Psychology: Upward motion equals life-bar elevation.
-* D-Pad DOWN: Contextual Action (Interact / Rip Armor)
-* Ergonomics: Downward pull matches the physical weight of a heavy kinetic rip or structural smash.
-   * Systemic Priority Logic:
-   * Priority 1: If a staggered anomaly is in melee range -> Trigger Visceral Armor Rip / Executive Execution.
-      * Priority 2: If standing next to a world object -> Trigger Universal Interact (Vending Machines / Doors / Terminals).
-      * Priority 3: On dry ground away from targets -> Null / No action (prevents dead frames). [2] 
-   
-------------------------------
-## HUD METRICS (OFF-CONTROLLER LOGIC)
-
-* Financial Audit Ticker: Debt tracking is completely removed from the controller mapping. Active lifetime debt, interest accumulation, and structural damage penalty fees are displayed live on the HUD ticker as an inverse score mechanic
