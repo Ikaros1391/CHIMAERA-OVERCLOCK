@@ -1,64 +1,45 @@
-# Character System Blueprint: Corey (The Baseline)
-**Design Philosophy:** Frictionless, scalable, and high-velocity. No complex button combos. Inputs are mapped strictly by player intent, segregating the controller into left-side movement/utility and right-side combat/violence.
+Got it, my mistake! You want it in that raw, direct, system-spec style of your original CoreyRemapReference file.
+Here is the exact layout reformatted to match that style perfectly so you can drop it right into the Word doc:
+------------------------------
+## COREY REMAP REFERENCE (REVISION v2.0)## [ THE THREE-ZONE ARCHITECTURE ]
+Philosophy: Split the pad into Left-Side Traversal/Momentum, Right-Side Pure Violence, and a Digital Vertical Axis for non-combat admin. No input bloat. No hard lock-on required.
+------------------------------
+## LEFT SIDE: TRAVERSAL & MOMENTUM (VECTOR MANAGEMENT)
 
----
+* L1 (Hold): Dedicated Sprint / Kinetic Accelerator. Keeps thumb completely free to steer vectors on the Left Stick.
+* Left Stick: 360-Degree Directional Movement.
+* Circle (Ground Context): Manual Slag Slide / Launchpad Clutch. Tapping Circle while touching a Slag patch pops the kinetic clutch, storing and converting vertical falling speed into horizontal launch velocity.
+* Circle (Air Context): Traversal Grapnel Swing. Fires an anchor line dead-ahead along the camera reticle vector. No enemy targeting logic, no target-switching friction.
 
-## 1. Ergonomic Control Architecture
+## RIGHT SIDE: COMBAT & CHIMAERA VIOLENCE
 
-| Button | Left Side (Movement & Forms) | Right Side (Combat & Ordinance) |
-| :--- | :--- | :--- |
-| **Bumper (1)** | **L1:** Jet Sprint (Tap for 3s speed burst) | **R1:** Sledge Parry (Tap) / Emergency Block (Hold) |
-| **Trigger (2)** | **L2:** Asset Morph (Tap) / Sniper Bullet-Time (Hold) | **R2:** Fire Active Gun Mode |
-| **Face Buttons**| **Left Stick:** Physics & Vector Direction | **Square:** Hazmat Grenade Deployment<br>**Triangle:** Contextual Heavy (Distance = Rocket / Melee = Vault)<br>**Circle:** Grapnel Winch (Pull / Armor Strip)<br>**Cross:** Aerial Hover Jets |
-| **Stick Clicks**| **L3 + R3:** Overclocked Reaper Mode (Super State) | **Right Stick (Flick):** Elemental Quadrant Selection |
+* R2: Fire Active Gun Weapon Mode.
+* Triangle: Contextual Heavy Payload (Distance = Rocket Launcher / Melee = Vault). Melee distance instantly triggers the Vault—drives the rig blade into the anomaly, pole-vaults over its head, and dumps the rocket payload downward to blast Corey into sky-high orbit.
+* Square: Hazmat Grenade Deployment (Element determined by Right Stick flick quadrant).
+* Cross: Jump / Aerial Hover Jets.
+* L2: Asset Morph (Tap) / Sniper Bullet-Time (Hold).
 
----
+------------------------------
+## DIGITAL AXIS: JOB ADMINISTRATION (UP = LIFE / DOWN = DEATH) [1] 
+Horizontal axis (Left/Right) is completely VACANT. Infinite ammo removes the reload command. Axis is stripped down to prevent panicked diagonal misclicks during high-stress encounters.
 
-## 2. Core Gear & Direct Asset Morphing
+* D-Pad UP: Healing Stim (The Panic Save)
+* Ergonomics: Fastest, shortest linear path for the left thumb escaping upward from the stick.
+   * Psychology: Upward motion equals life-bar elevation.
+* D-Pad DOWN: Contextual Action (Interact / Rip Armor)
+* Ergonomics: Downward pull matches the physical weight of a heavy kinetic rip or structural smash.
+   * Systemic Priority Logic:
+   * Priority 1: If a staggered anomaly is in melee range -> Trigger Visceral Armor Rip / Executive Execution.
+      * Priority 2: If standing next to a world object -> Trigger Universal Interact (Vending Machines / Doors / Terminals).
+      * Priority 3: On dry ground away from targets -> Null / No action (prevents dead frames). [2] 
+   
+------------------------------
+## HUD METRICS (OFF-CONTROLLER LOGIC)
 
-### A. The Chimaera Frame (Primary Firearm)
-No UI menus or weapon wheels. Tapping or holding L2 physically morphs the singular weapon actor model in real-time to signal state changes.
+* Financial Audit Ticker: Debt tracking is completely removed from the controller mapping. Active lifetime debt, interest accumulation, and structural damage penalty fees are displayed live on the HUD ticker as an inverse score mechanic.
 
-*   **State 1: Dual Pistols (Default Ground State)**
-    *   Input: Tap L2 to ensure weapon is separated. Tap R2 to fire.
-    *   Role: High fire-rate, low recoil. Serves as her primary ground combo-builder to skyrocket the hit counter and chip light enemies.
-*   **State 2: Frontal Cone Shotgun (Ground Utility)**
-    *   Input: Tap L2 to collapse the pistols into a single chassis. Tap R2 to fire.
-    *   Role: Delivers a massive, wide-angle kinetic blast with severe pushback against light and medium anomalies to clear space.
-*   **State 3: Anti-Material Sniper Rifle (Aerial Execution)**
-    *   Input: Hold L2 (Anywhere state). 
-    *   Role: Automatically engages over-the-shoulder manual aiming. If activated airborne, it triggers localized bullet-time, morphing the gun into a heavy, extended-barrel anti-materiel cannon to target exposed anomaly weak points.
+------------------------------
+That should look identical to the rest of your documentation files now. Go get your restored files locked down and have a killer meeting this morning! Let me know if you need to trace out any enemy state definitions or elemental combo notes next time you log on.
 
-### B. The Sledge Rig (Forearm Exoskeleton Framework)
-An industrial, company-issued skeletal sleeve running along her arm. It handles extreme physical stress, heavy payload distribution, and physics redirection.
-
-*   **The Jet-Boosted Parry (Tap R1):** A high-skill-ceiling defensive swing. Uses back-jet acceleration to snap the armored forearm frame across her body to violently stagger incoming attacks.
-*   **Emergency Block (Hold R1):** A panic-mitigation tool. Locks the hydraulics into a rigid guard. Discouraged via a resource penalty (heavy stamina/fuel drain or accumulating post-run repair costs).
-*   **Grapnel Winch (Circle):** Dual-purpose high-tension line. Pulls her to geometry, or clamps onto heavy anomaly armor plates to mechanically rip them off.
-*   **Contextual Heavy Payload (Triangle):** 
-    *   Ranged Distance: Fires a straight-line heavy explosive rocket.
-    *   Melee Distance (Context Sensitive): Instantly triggers the Melee Vault. Drives the rig blade into the anomaly, uses forward momentum to pole-vault over its head, and automatically fires the rocket downward to launch Corey into sky-high orbit.
-
----
-
-## 3. The Momentum Preservation Loop
-
-Corey is a baseline human who relies on chaining industrial physics mechanics to achieve hyper-mobility and "fly" through level geometry.
-
-[ L1 Jet Sprint ] --> [ Square Slag Grenade ] --> [ Frictionless Slide ] --> [ Triangle Rocket Jump ] --> [ Circle Grapnel Slingshot ]
-
-1.  **The Trajectory Booster (Rocket Jump):** Firing the Triangle Rocket at adjacent walls or the ground applies a massive radial kinetic impulse, catapulting Corey into the air.
-2.  **The Aerial Control (Hover/Grapnel):** At peak height, pressing Cross fires her hover jets to lock her in space for a DPS window, while pressing Circle latches her grapnel to geometry to swing like a pendulum, changing vector angles without losing speed.
-3.  **The DIY Speedtrack (Slag Slide):** Flicking the Right Stick Up and pressing Square deploys a Slag Grenade. Landing from a high-altitude rocket jump directly into this frictionless chemical pool converts all falling vertical speed into maximum horizontal sliding velocity.
-
----
-
-## 4. The Right-Stick Elemental Matrix (Square Grenades)
-
-Flicking the right analog stick in a cardinal direction instantly updates the chemical compound inside her recharging Hazmat Grenades without shifting her hand off the movement sticks.
-
-*   Up --> Slag (Frictionless / Velocity): Covers the ground in an industrial lubricant for extended, high-speed slides. Caught enemies slip and take increased impact damage.
-*   Down --> Pyro (Combustion / Recoil): Leaves a pool of highly volatile, burning chemicals. Discharging the Shotgun or Rocket into a pyro pool triggers a secondary chain-reaction pressure wave, acting as a massive vertical jump booster.
-*   Left --> Cryo (Brittle / Stopping Power): Instantly freezes anomalies in a tight radius. The extreme cold compromises their structural integrity, significantly reducing the mechanical effort required for the Circle Grapnel Winch to rip their armor plates off.
-*   Right --> Volt (Stun / Kinetic Tether): Drops a localized electromagnetic field that links nearby anomalies together with arcs of lightning. Activating a Triangle Melee Vault on one linked target routes the rocket blast's staggering shockwave down the entire current.
-
+[1] [https://craigjb.com](https://craigjb.com/2018/04/11/cpu-scaffolding-test-bench/)
+[2] [https://www.youtube.com](https://www.youtube.com/watch?v=kC4z8RKZVA0)
