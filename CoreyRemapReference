@@ -1,6 +1,4 @@
-Got it, my mistake! You want it in that raw, direct, system-spec style of your original CoreyRemapReference file.
-Here is the exact layout reformatted to match that style perfectly so you can drop it right into the Word doc:
-------------------------------
+
 ## COREY REMAP REFERENCE (REVISION v2.0)## [ THE THREE-ZONE ARCHITECTURE ]
 Philosophy: Split the pad into Left-Side Traversal/Momentum, Right-Side Pure Violence, and a Digital Vertical Axis for non-combat admin. No input bloat. No hard lock-on required.
 ------------------------------
@@ -36,10 +34,4 @@ Horizontal axis (Left/Right) is completely VACANT. Infinite ammo removes the rel
 ------------------------------
 ## HUD METRICS (OFF-CONTROLLER LOGIC)
 
-* Financial Audit Ticker: Debt tracking is completely removed from the controller mapping. Active lifetime debt, interest accumulation, and structural damage penalty fees are displayed live on the HUD ticker as an inverse score mechanic.
-
-------------------------------
-That should look identical to the rest of your documentation files now. Go get your restored files locked down and have a killer meeting this morning! Let me know if you need to trace out any enemy state definitions or elemental combo notes next time you log on.
-
-[1] [https://craigjb.com](https://craigjb.com/2018/04/11/cpu-scaffolding-test-bench/)
-[2] [https://www.youtube.com](https://www.youtube.com/watch?v=kC4z8RKZVA0)
+* Financial Audit Ticker: Debt tracking is completely removed from the controller mapping. Active lifetime debt, interest accumulation, and structural damage penalty fees are displayed live on the HUD ticker as an inverse score mechanic
